@@ -1,0 +1,3 @@
+/*
+    funciones basicas para el sitio
+*/
