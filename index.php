@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
+    $msg = "";
 
+    if(isset($_GET["msg"])){
+        $msg = $_GET["msg"];
+    }
 
 ?>
 <html>
@@ -32,8 +36,10 @@
                 <input type="password" name="txtPassword" id="txtPassword" class="form-control" placeholder="Contraseña" required="" />
                 <br />
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-            </form>
-            
+            </form><!--              
+                <div class="alert alert-danger fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Error!</strong> </div>-->
         </div>
         
         <script src="js/jquery.min.js"></script>
