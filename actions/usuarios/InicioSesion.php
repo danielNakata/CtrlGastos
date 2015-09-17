@@ -21,14 +21,11 @@
 
         //busca si existe la combinacion de usuario y contraseña
         $sql = "select idusuario, ulogin, unombre, upaterno, uemail, ufechanac, uestatus from tusuarios where ulogin = '".$txtLogin."' and upass = password('".$txtPassword."') ";
-        
-        echo $sql."<br />";
 
         $resultado = $conex->query($sql);
         $existe = $resultado->num_rows;
 
-        if ($existe > 1){
-            echo "Si existe el usuario, ahora extraeremos sus demas datos y los subiremos a sesion, y crearemos un aleatorio para validar la sesion y evitar que regresen <br />";
+        if ($existe > 0){
             while($obj = $resultado->fetch_object()){
                 $sidusuario = $obj->idusuario;
                 $sulogin = $obj->ulogin;
@@ -39,7 +36,28 @@
                 $suestatus = $obj->uestatus;
             }
             
-            echo $sidusuario."-".$sulogin."-".$sunombre."-".$supaterno."-".$suemail."-".$sufechanac."-".$suestatus."<br />";
+            $rand = range(10000000,20000000);
+            shuffle($rand);
+            
+            //subir a sesion los datos
+            $_SESSION["idusuario"] = $sidusuario;
+            $_SESSION["ulogin"] = $sulogin;
+            $_SESSION["unombre"] = $sunombre;
+            $_SESSION["upaterno"] = $supaterno;
+            $_SESSION["uemail"] = $suemail;
+            $_SESSION["ufechanac"] = $sufechanac;
+            $_SESSION["suestatus"] = $suestatus;
+            $_SESSION["idsesion"] = $sidusuario.'-'.$rand[0];
+            
+            echo $_SESSION["idsesion"]."<br />";
+            
+            $resultado->close();
+            $conex->close();
+            unset($resultado);
+            unset($conex); 
+            unset($sql);
+            unset($rand);
+            //header("Location: ../../menuPrincipal.php");
             
         }else{
             $resultado->close();
