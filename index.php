@@ -23,8 +23,8 @@
             </div>
         </nav>
         <div class="container">
-            <form class="form-signin" action="InicioSesion">
-                <h2 class="form-signin-heading" >Inicio de Sesión</h2>
+            <form class="form-signin" action="actions/usuarios/InicioSesion.php" method="get">
+                <h2 class="form-signin-heading" style="color: #FFF" >Inicio de Sesión</h2>
                 <label for="txtLogin" class="sr-only">Usuario</label>
                 <input type="text" name="txtLogin" id="txtLogin" class="form-control" placeholder="Usuario" required autofocus />
                 <br />
